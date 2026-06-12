@@ -3,59 +3,78 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="refresh" content="0; url=about-me.html" />
-  <title>Jean's Beans</title>
+  <title>Jean's Beans | All In One</title>
   <link rel="stylesheet" href="style.css" />
-  <style>
-    .landing {
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      padding: 2rem 1rem;
-    }
-
-    .landing-card {
-      max-width: 680px;
-      width: 100%;
-      text-align: center;
-    }
-
-    .landing-links {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.75rem;
-      margin-top: 1.5rem;
-    }
-
-    .landing-links a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      color: #fff8c6;
-      background: #3f2a1d;
-      border-radius: 999px;
-      padding: 0.75rem 1rem;
-      min-width: 10rem;
-    }
-  </style>
 </head>
 <body>
-  <main class="landing">
-    <section class="card landing-card">
-      <h2>Jean's Beans</h2>
+  <header>
+    <div class="header-inner">
+      <h1>Jean's Beans</h1>
+      <nav>
+        <a href="#about-me">About Me</a>
+        <a href="#hobbies">Hobbies</a>
+        <a href="#favorite-things">Favorite Things</a>
+        <a href="#biggest-accomplishment">Biggest Accomplishment</a>
+        <a href="#find-me">Find Me</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="card" id="about-me">
+      <h2>About Me</h2>
+      <p>Hi! My name is Giang Tran, but I go by Jean. Here are some things about me:</p>
+      <ul>
+        <li>I'm a student at Carnegie Vanguard High School</li>
+        <li>I'm 15 years old</li>
+        <li>I live in Houston, Texas</li>
+        <li>I speak English and some Vietnamese and Mandarin</li>
+        <li>I have a strong interest in STEM, especially math and computer science</li>
+      </ul>
+    </section>
+
+    <section class="card" id="hobbies">
+      <h2>Hobbies</h2>
+      <p>In my free time, I enjoy activities that keep me creative and energized:</p>
+      <ul>
+        <li>Trying new coffee bean blends and brewing methods</li>
+        <li>Reading novels and short stories</li>
+        <li>Walking through local markets and cafes</li>
+        <li>Journaling ideas for future projects</li>
+      </ul>
+    </section>
+
+    <section class="card" id="favorite-things">
+      <h2>Favorite Things</h2>
+      <p>These are a few things that bring me joy:</p>
+      <ul>
+        <li>Freshly brewed coffee in a ceramic mug</li>
+        <li>Rainy afternoons with soft music</li>
+        <li>Warm pastries from neighborhood bakeries</li>
+        <li>Handwritten notes and old bookstores</li>
+      </ul>
+    </section>
+
+    <section class="card" id="biggest-accomplishment">
+      <h2>Biggest Accomplishment</h2>
       <p>
-        This site will take you to the About Me page automatically. If it does not, use the links below.
+        My biggest accomplishment is when I was a member of the 2025 MATHCOUNTS team for T.H. Rogers School.
+        We competed in the state competition and ultimately didn't place, but I was the 50th ranked individual
+        competitor in the state, which was a huge achievement for me.
       </p>
-      <div class="landing-links">
-        <a href="about-me.html">About Me</a>
-        <a href="hobbies.html">Hobbies</a>
-        <a href="favorite-things.html">Favorite Things</a>
-        <a href="biggest-accomplishment.html">Biggest Accomplishment</a>
-        <a href="find-me.html">Find Me</a>
-      </div>
+    </section>
+
+    <section class="card" id="find-me">
+      <h2>Find Me</h2>
+      <p>I am always happy to connect. Reach out through:</p>
+      <ul>
+        <li>Email: jean@jeansbeans.example</li>
+        <li>Instagram: @jeansbeans</li>
+        <li>City: Your Friendly Local Cafe District</li>
+      </ul>
     </section>
   </main>
+
+  <footer>Jean's Beans</footer>
 </body>
 </html>

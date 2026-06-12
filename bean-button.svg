@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 170" role="img" aria-label="Bean button">
+  <defs>
+    <radialGradient id="beanFill" cx="62%" cy="30%" r="75%">
+      <stop offset="0%" stop-color="#9c4a42"/>
+      <stop offset="55%" stop-color="#7a2f26"/>
+      <stop offset="100%" stop-color="#5d211b"/>
+    </radialGradient>
+    <radialGradient id="shine" cx="60%" cy="32%" r="45%">
+      <stop offset="0%" stop-color="#c97e76" stop-opacity="0.65"/>
+      <stop offset="100%" stop-color="#c97e76" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="notch" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fff7ef"/>
+      <stop offset="100%" stop-color="#dfd7d0"/>
+    </linearGradient>
+  </defs>
+
+  <path
+    d="M20 82 C22 42, 58 16, 103 13 C142 11, 165 24, 190 33 C212 41, 232 47, 259 50
+       C298 55, 331 75, 338 103 C346 132, 326 156, 284 164 C250 170, 206 168, 173 160
+       C128 150, 89 142, 58 124 C31 108, 18 96, 20 82 Z"
+    fill="url(#beanFill)"
+  />
+
+  <path
+    d="M22 82 C24 43, 59 18, 103 15 C142 13, 164 25, 190 34 C211 42, 231 48, 259 52
+       C297 57, 329 76, 336 103"
+    fill="none"
+    stroke="#4d1712"
+    stroke-width="2"
+    stroke-opacity="0.45"
+  />
+
+  <ellipse cx="202" cy="60" rx="25" ry="9" fill="url(#notch)" transform="rotate(8 202 60)" />
+  <path d="M180 58 C190 51, 212 51, 228 58" fill="none" stroke="#4d1712" stroke-width="1.8" stroke-opacity="0.28"/>
+  <ellipse cx="214" cy="80" rx="120" ry="45" fill="url(#shine)" />
+</svg>
