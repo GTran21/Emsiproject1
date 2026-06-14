@@ -39,22 +39,22 @@ nav a {
   text-decoration: none;
   color: #fff8c6;
   background-color: transparent;
-  background-image: url("bean-button.svg");
+  background-image: url("BEAN.png");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: contain;
   border: none;
-  padding: 0 1.4rem;
+  padding: 0 0.9rem;
   border-radius: 0;
-  font-size: 0.88rem;
+  font-size: 0.8rem;
   font-weight: 700;
   white-space: nowrap;
   text-shadow: 0 1px 0 rgba(45, 20, 16, 0.55);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 8.8rem;
-  min-height: 3.1rem;
+  min-width: 7.4rem;
+  min-height: 2.4rem;
   overflow: hidden;
   position: relative;
   isolation: isolate;
@@ -87,7 +87,7 @@ h2 {
 
 .card {
   background: rgba(255, 255, 255, 0.45);
-  border: 1px solid #e7d898;
+  border: none;
   border-radius: 8px;
   padding: 1.2rem;
 }
@@ -138,12 +138,13 @@ h2 {
   font-size: 1.08rem;
   font-weight: 700;
   color: #3f2a1d;
-  border: 1px solid #d9c16f;
-  background: linear-gradient(145deg, #fff5bd, #fde8a0);
+  border: none;
+  background: #fff8c6;
 }
 
 .flip-card-back {
   transform: rotateY(180deg);
+  background-color: #fff8c6;
 }
 
 .flip-card-back img {
