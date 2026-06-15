@@ -9,7 +9,7 @@
 <body>
   <header>
     <div class="header-inner">
-      <h1>Jean's Beans</h1>
+      <h1>Jean's Beans!</h1>
       <nav>
         <a href="#about-me">About Me</a>
         <a href="#hobbies">Hobbies</a>
@@ -20,17 +20,29 @@
     </div>
   </header>
 
+  <section class="top-player" id="favorite-songs-player" aria-label="Jean's favorite songs player">
+    <div class="top-player-inner">
+      <div id="spotify-player-container" class="spotify-player-container"></div>
+    </div>
+  </section>
+
   <main>
     <section class="card" id="about-me">
       <h2>About Me</h2>
       <p>Hi! My name is Giang Tran, but I go by Jean. Here are some things about me:</p>
-      <ul>
-        <li>I'm a student at Carnegie Vanguard High School</li>
-        <li>I'm 15 years old</li>
-        <li>I live in Houston, Texas</li>
-        <li>I speak English and some Vietnamese and Mandarin</li>
-        <li>I have a strong interest in STEM, especially math and computer science</li>
-      </ul>
+      <div class="about-content">
+        <ul>
+          <li>I'm a student at Carnegie Vanguard High School</li>
+          <li>I'm 15 years old</li>
+          <li>I live in Houston, Texas</li>
+          <li>I speak English and some Vietnamese and Mandarin</li>
+          <li>I have a strong interest in STEM, especially math and computer science</li>
+        </ul>
+        <figure class="profile-figure">
+          <img src="IMG_0001.jpeg" alt="My favorite profile picture" />
+          <figcaption>My favorite profile picture :)</figcaption>
+        </figure>
+      </div>
     </section>
 
     <section class="card" id="hobbies">
@@ -60,7 +72,7 @@
               </div>
             </div>
             <div class="flip-card-back">
-              <img src="hobby-guitar.svg" alt="Guitar" />
+              <img src="IMG_0088.jpeg" alt="Guitar" />
             </div>
           </div>
         </div>
@@ -108,7 +120,7 @@
               </div>
             </div>
             <div class="flip-card-back">
-              <div class="favorite-card-text">Favorite Food: Bánh Mì</div>
+              <img src="banhmi.jpeg" alt="Favorite Food: Banh Mi" />
             </div>
           </div>
         </div>
@@ -122,23 +134,24 @@
               </div>
             </div>
             <div class="flip-card-back">
-              <video autoplay muted loop playsinline preload="metadata" aria-label="Yellow laptop video">
-                <source src="YellowLaptop.mp4" type="video/mp4" />
+              <video class="favorite-color-video" autoplay muted loop playsinline preload="auto" aria-label="Yellow laptop video">
+                <source src="YellowLaptop.mp4?v=2" type="video/mp4" />
+                Your browser does not support the video tag.
               </video>
             </div>
           </div>
         </div>
 
-        <div class="flip-card" tabindex="0" aria-label="Favorite subject card">
+        <div class="flip-card" tabindex="0" aria-label="Favorite song card">
           <div class="flip-card-inner">
             <div class="flip-card-front">
               <div class="favorite-front-content">
-                <span class="favorite-front-emoji">💻</span>
-                <span class="favorite-front-label">Favorite Subject: Computer Science</span>
+                <span class="favorite-front-emoji">🎵</span>
+                <span class="favorite-front-label">Favorite Song: IDSMILE</span>
               </div>
             </div>
             <div class="flip-card-back">
-              <div class="favorite-card-text">Favorite Subject: Computer Science</div>
+              <img src="Fav Song on Spotify.png" alt="Favorite Song: IDSMILE" />
             </div>
           </div>
         </div>
@@ -152,7 +165,7 @@
               </div>
             </div>
             <div class="flip-card-back">
-              <div class="favorite-card-text">Favorite Video Game: Hatsune Miku: Colorful Stage!</div>
+              <img src="IMG_1807.jpeg" alt="Favorite Video Game: Hatsune Miku: Colorful Stage!" />
             </div>
           </div>
         </div>
@@ -183,6 +196,367 @@
     </section>
   </main>
 
-  <footer>Jean's Beans</footer>
+  <footer>
+    <p>Special thanks to Mr. Lopez and Copilot for helping me vibecode this website :)</p>
+  </footer>
+
+  <div class="lightbox" id="flipcard-lightbox" hidden>
+    <div class="lightbox-content" role="dialog" aria-modal="true" aria-label="Expanded flip card media">
+      <button class="lightbox-nav lightbox-nav-prev" id="lightbox-prev" type="button" aria-label="Show previous flip card media">&#10094;</button>
+      <button class="lightbox-nav lightbox-nav-next" id="lightbox-next" type="button" aria-label="Show next flip card media">&#10095;</button>
+      <button class="lightbox-close" id="lightbox-close" type="button" aria-label="Close expanded media">x</button>
+      <div class="lightbox-media" id="lightbox-media"></div>
+    </div>
+  </div>
+
+  <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
+  <script>
+    (function () {
+      const header = document.querySelector("header");
+      if (!header) return;
+
+      const updateAnchorOffset = function () {
+        const offset = Math.ceil(header.getBoundingClientRect().height + 12);
+        document.documentElement.style.setProperty("--anchor-offset", offset + "px");
+      };
+
+      updateAnchorOffset();
+      window.addEventListener("resize", updateAnchorOffset);
+      window.addEventListener("load", updateAnchorOffset);
+    })();
+
+    (function () {
+      const navLinks = document.querySelectorAll("nav a");
+      if (!navLinks.length) return;
+
+      let hoverTimer = null;
+      let hoveredLink = null;
+      let isBeanRainActive = false;
+
+      const clearHoverTimer = function () {
+        if (hoverTimer) {
+          clearTimeout(hoverTimer);
+          hoverTimer = null;
+        }
+      };
+
+      const launchBeanRain = function () {
+        if (isBeanRainActive) return;
+        isBeanRainActive = true;
+
+        const rainLayer = document.createElement("div");
+        rainLayer.className = "bean-rain-layer";
+
+        const beanCount = Math.min(72, Math.max(36, Math.floor(window.innerWidth / 24)));
+        for (let i = 0; i < beanCount; i += 1) {
+          const bean = document.createElement("span");
+          bean.className = "bean-drop";
+          bean.textContent = "🫘";
+          bean.style.left = Math.random() * 100 + "vw";
+          bean.style.fontSize = (0.9 + Math.random() * 1.2).toFixed(2) + "rem";
+          bean.style.opacity = "1";
+          bean.style.animationDuration = (2.8 + Math.random() * 2.2).toFixed(2) + "s";
+          bean.style.animationDelay = (Math.random() * 1.4).toFixed(2) + "s";
+          rainLayer.appendChild(bean);
+        }
+
+        document.body.appendChild(rainLayer);
+
+        window.setTimeout(function () {
+          rainLayer.remove();
+          isBeanRainActive = false;
+        }, 7200);
+      };
+
+      const startHoverCountdown = function (link) {
+        clearHoverTimer();
+        hoveredLink = link;
+        hoverTimer = window.setTimeout(function () {
+          if (hoveredLink === link) {
+            launchBeanRain();
+          }
+        }, 5000);
+      };
+
+      const stopHoverCountdown = function (link) {
+        if (hoveredLink === link) {
+          hoveredLink = null;
+          clearHoverTimer();
+        }
+      };
+
+      navLinks.forEach(function (link) {
+        link.addEventListener("pointerenter", function () {
+          startHoverCountdown(link);
+        });
+
+        link.addEventListener("pointerleave", function () {
+          stopHoverCountdown(link);
+        });
+
+        link.addEventListener("focusin", function () {
+          startHoverCountdown(link);
+        });
+
+        link.addEventListener("focusout", function () {
+          stopHoverCountdown(link);
+        });
+      });
+    })();
+
+    (function () {
+      const favoriteColorVideo = document.querySelector(".favorite-color-video");
+      const favoriteColorCard = document.querySelector('.flip-card[aria-label="Favorite color card"]');
+      if (!favoriteColorVideo) return;
+
+      favoriteColorVideo.load();
+
+      const tryPlayFavoriteColorVideo = function () {
+        const playPromise = favoriteColorVideo.play();
+        if (playPromise && typeof playPromise.catch === "function") {
+          playPromise.catch(function () {
+            // Some browsers still gate playback until interaction.
+          });
+        }
+      };
+
+      window.addEventListener("pointerdown", tryPlayFavoriteColorVideo, { once: true });
+      window.addEventListener("keydown", tryPlayFavoriteColorVideo, { once: true });
+
+      if (favoriteColorCard) {
+        favoriteColorCard.addEventListener("mouseenter", tryPlayFavoriteColorVideo);
+        favoriteColorCard.addEventListener("focusin", tryPlayFavoriteColorVideo);
+      }
+    })();
+
+    (function () {
+      let spotifyController = null;
+      const nowPlayingTitle = document.getElementById("now-playing-title");
+
+      const setNowPlayingTitle = function (text) {
+        if (nowPlayingTitle) nowPlayingTitle.textContent = text;
+      };
+
+      const requestPlaybackStart = function () {
+        if (!spotifyController || typeof spotifyController.play !== "function") return;
+        try {
+          spotifyController.play();
+        } catch (error) {
+          // Browsers may block autoplay until a user interaction.
+        }
+      };
+
+      window.addEventListener("click", requestPlaybackStart, { once: true });
+      window.addEventListener("keydown", requestPlaybackStart, { once: true });
+
+      window.onSpotifyIframeApiReady = function (IFrameAPI) {
+        const container = document.getElementById("spotify-player-container");
+        if (!container) return;
+
+        const options = {
+          uri: "spotify:playlist:4doWlWEAe8Z4f5QNNTWpLn",
+          width: "100%",
+          height: "152"
+        };
+
+        const callback = function (EmbedController) {
+          spotifyController = EmbedController;
+          requestPlaybackStart();
+
+          EmbedController.addListener("playback_update", function (event) {
+            const trackName = event && event.data && event.data.track && event.data.track.name;
+            if (trackName) {
+              setNowPlayingTitle(trackName);
+            }
+          });
+
+          EmbedController.addListener("ready", function () {
+            requestPlaybackStart();
+          });
+        };
+
+        IFrameAPI.createController(container, options, callback);
+      };
+    })();
+
+    (function () {
+      const lightbox = document.getElementById("flipcard-lightbox");
+      const closeButton = document.getElementById("lightbox-close");
+      const prevButton = document.getElementById("lightbox-prev");
+      const nextButton = document.getElementById("lightbox-next");
+      const lightboxMedia = document.getElementById("lightbox-media");
+      const flipCards = document.querySelectorAll(".flip-card");
+
+      if (!lightbox || !closeButton || !prevButton || !nextButton || !lightboxMedia || !flipCards.length) return;
+
+      let currentSectionCards = [];
+      let currentCardIndex = -1;
+
+      const updateNavButtons = function () {
+        const hasMultiple = currentSectionCards.length > 1;
+        prevButton.hidden = !hasMultiple;
+        nextButton.hidden = !hasMultiple;
+        prevButton.disabled = !hasMultiple;
+        nextButton.disabled = !hasMultiple;
+      };
+
+      const closeLightbox = function () {
+        const activeVideo = lightboxMedia.querySelector("video");
+        if (activeVideo) {
+          activeVideo.pause();
+          activeVideo.removeAttribute("src");
+        }
+        lightboxMedia.innerHTML = "";
+        lightbox.hidden = true;
+        document.body.style.overflow = "";
+        currentSectionCards = [];
+        currentCardIndex = -1;
+        updateNavButtons();
+      };
+
+      const openImage = function (src, altText) {
+        if (!src) return;
+        const normalizedSrc = (src || "").trim();
+        const resolvedSrc = normalizedSrc ? new URL(normalizedSrc, window.location.href).href : "";
+        lightboxMedia.innerHTML = "";
+        const image = document.createElement("img");
+        image.alt = altText || "Expanded flip card image";
+        image.src = resolvedSrc;
+        lightboxMedia.appendChild(image);
+        lightbox.hidden = false;
+        document.body.style.overflow = "hidden";
+        updateNavButtons();
+      };
+
+      const openVideo = function (src) {
+        if (!src) return;
+        lightboxMedia.innerHTML = "";
+        const video = document.createElement("video");
+        video.controls = true;
+        video.loop = true;
+        video.playsInline = true;
+        video.src = src;
+        lightboxMedia.appendChild(video);
+        lightbox.hidden = false;
+        document.body.style.overflow = "hidden";
+        const playPromise = video.play();
+        if (playPromise && typeof playPromise.catch === "function") {
+          playPromise.catch(function () {
+            // Playback may require user interaction in some browsers.
+          });
+        }
+        updateNavButtons();
+      };
+
+      const getCardMedia = function (card) {
+        const backImage = card.querySelector(".flip-card-back img");
+        if (backImage) {
+          const rawSrc = backImage.getAttribute("src") || backImage.currentSrc || backImage.src;
+          const imageSrc = rawSrc ? new URL(rawSrc, window.location.href).href : "";
+          if (imageSrc) {
+            return {
+              type: "image",
+              src: imageSrc,
+              alt: backImage.getAttribute("alt")
+            };
+          }
+        }
+
+        const fallbackImage = card.querySelector("img");
+        if (fallbackImage && fallbackImage.getAttribute("src")) {
+          return {
+            type: "image",
+            src: fallbackImage.getAttribute("src"),
+            alt: fallbackImage.getAttribute("alt")
+          };
+        }
+
+        const backVideo = card.querySelector(".flip-card-back video");
+        if (backVideo) {
+          const source = backVideo.querySelector("source");
+          const videoSrc = (source && source.getAttribute("src")) || backVideo.getAttribute("src");
+          if (videoSrc) {
+            return {
+              type: "video",
+              src: videoSrc
+            };
+          }
+        }
+
+        return null;
+      };
+
+      const openCurrentCard = function () {
+        const currentCard = currentSectionCards[currentCardIndex];
+        if (!currentCard) return;
+        const media = getCardMedia(currentCard);
+        if (!media) return;
+        if (media.type === "image") {
+          openImage(media.src, media.alt);
+          return;
+        }
+        openVideo(media.src);
+      };
+
+      const navigateCards = function (direction) {
+        if (currentSectionCards.length <= 1) return;
+        const count = currentSectionCards.length;
+        const nextIndex = (currentCardIndex + direction + count) % count;
+        currentCardIndex = nextIndex;
+        openCurrentCard();
+      };
+
+      const openFromCard = function (card) {
+        const section = card.closest("section");
+        if (!section) return;
+        currentSectionCards = Array.from(section.querySelectorAll(".flip-card"));
+        currentCardIndex = currentSectionCards.indexOf(card);
+        if (currentCardIndex < 0) return;
+        openCurrentCard();
+      };
+
+      flipCards.forEach(function (card) {
+        card.addEventListener("click", function () {
+          openFromCard(card);
+        });
+
+        card.addEventListener("keydown", function (event) {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            openFromCard(card);
+          }
+        });
+      });
+
+      closeButton.addEventListener("click", closeLightbox);
+      prevButton.addEventListener("click", function () {
+        navigateCards(-1);
+      });
+      nextButton.addEventListener("click", function () {
+        navigateCards(1);
+      });
+
+      lightbox.addEventListener("click", function (event) {
+        if (event.target === lightbox) closeLightbox();
+      });
+
+      document.addEventListener("keydown", function (event) {
+        if (lightbox.hidden) return;
+        if (event.key === "Escape") {
+          closeLightbox();
+          return;
+        }
+        if (event.key === "ArrowLeft") {
+          navigateCards(-1);
+          return;
+        }
+        if (event.key === "ArrowRight") {
+          navigateCards(1);
+        }
+      });
+
+      updateNavButtons();
+    })();
+  </script>
 </body>
 </html>
