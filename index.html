@@ -39,7 +39,12 @@
       <div class="hobby-grid">
         <div class="flip-card" tabindex="0" aria-label="Running hobby card">
           <div class="flip-card-inner">
-            <div class="flip-card-front">Running 🏃🏻‍♀️</div>
+            <div class="flip-card-front">
+              <div class="favorite-front-content">
+                <span class="favorite-front-emoji">🏃🏻‍♀️</span>
+                <span class="favorite-front-label">Running</span>
+              </div>
+            </div>
             <div class="flip-card-back">
               <img src="running.jpeg" alt="Running" />
             </div>
@@ -48,7 +53,12 @@
 
         <div class="flip-card" tabindex="0" aria-label="Guitar hobby card">
           <div class="flip-card-inner">
-            <div class="flip-card-front">Guitar 🎸</div>
+            <div class="flip-card-front">
+              <div class="favorite-front-content">
+                <span class="favorite-front-emoji">🎸</span>
+                <span class="favorite-front-label">Guitar</span>
+              </div>
+            </div>
             <div class="flip-card-back">
               <img src="hobby-guitar.svg" alt="Guitar" />
             </div>
@@ -57,7 +67,12 @@
 
         <div class="flip-card" tabindex="0" aria-label="Photography hobby card">
           <div class="flip-card-inner">
-            <div class="flip-card-front">Photography 📷</div>
+            <div class="flip-card-front">
+              <div class="favorite-front-content">
+                <span class="favorite-front-emoji">📷</span>
+                <span class="favorite-front-label">Photography</span>
+              </div>
+            </div>
             <div class="flip-card-back">
               <img src="IMG_0987.jpeg" alt="Photography" />
             </div>
@@ -66,9 +81,14 @@
 
         <div class="flip-card" tabindex="0" aria-label="Video Games hobby card">
           <div class="flip-card-inner">
-            <div class="flip-card-front">Video Games 🎮</div>
+            <div class="flip-card-front">
+              <div class="favorite-front-content">
+                <span class="favorite-front-emoji">🎮</span>
+                <span class="favorite-front-label">Video Games</span>
+              </div>
+            </div>
             <div class="flip-card-back">
-              <img src="hobby-videogames.svg" alt="Video Games" />
+              <img src="IMG_1795.jpeg" alt="Video Games" />
             </div>
           </div>
         </div>
@@ -77,13 +97,66 @@
 
     <section class="card" id="favorite-things">
       <h2>Favorite Things</h2>
-      <p>These are a few things that bring me joy:</p>
-      <ul>
-        <li>Freshly brewed coffee in a ceramic mug</li>
-        <li>Rainy afternoons with soft music</li>
-        <li>Warm pastries from neighborhood bakeries</li>
-        <li>Handwritten notes and old bookstores</li>
-      </ul>
+      <p>Flip the cards to see my favorites:</p>
+      <div class="hobby-grid">
+        <div class="flip-card" tabindex="0" aria-label="Favorite food card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="favorite-front-content">
+                <span class="favorite-front-emoji">🥖</span>
+                <span class="favorite-front-label">Favorite Food: Bánh Mì</span>
+              </div>
+            </div>
+            <div class="flip-card-back">
+              <div class="favorite-card-text">Favorite Food: Bánh Mì</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" tabindex="0" aria-label="Favorite color card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="favorite-front-content">
+                <span class="favorite-front-emoji">💛</span>
+                <span class="favorite-front-label">Favorite Color: Yellow</span>
+              </div>
+            </div>
+            <div class="flip-card-back">
+              <video autoplay muted loop playsinline preload="metadata" aria-label="Yellow laptop video">
+                <source src="YellowLaptop.mp4" type="video/mp4" />
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" tabindex="0" aria-label="Favorite subject card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="favorite-front-content">
+                <span class="favorite-front-emoji">💻</span>
+                <span class="favorite-front-label">Favorite Subject: Computer Science</span>
+              </div>
+            </div>
+            <div class="flip-card-back">
+              <div class="favorite-card-text">Favorite Subject: Computer Science</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" tabindex="0" aria-label="Favorite video game card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="favorite-front-content">
+                <span class="favorite-front-emoji">🎮</span>
+                <span class="favorite-front-label">Favorite Video Game: Hatsune Miku: Colorful Stage!</span>
+              </div>
+            </div>
+            <div class="flip-card-back">
+              <div class="favorite-card-text">Favorite Video Game: Hatsune Miku: Colorful Stage!</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section class="card" id="biggest-accomplishment">
@@ -97,12 +170,16 @@
 
     <section class="card" id="find-me">
       <h2>Find Me</h2>
-      <p>I am always happy to connect. Reach out through:</p>
-      <ul>
-        <li>Email: jean@jeansbeans.example</li>
-        <li>Instagram: @jeansbeans</li>
-        <li>City: Your Friendly Local Cafe District</li>
-      </ul>
+      <div class="find-me-grid">
+        <div class="find-me-item">
+          <img src="EMSI Site Find Me 1.png" alt="Email contact" />
+          <p><a href="mailto:trannguyetgiang712@gmail.com">trannguyetgiang712@gmail.com</a></p>
+        </div>
+        <div class="find-me-item">
+          <img src="EMSI Site Find Me.png" alt="Instagram contact" />
+          <p><a href="https://www.instagram.com/jeanius_tobeknown/" target="_blank" rel="noopener noreferrer">@jeanius_tobeknown</a></p>
+        </div>
+      </div>
     </section>
   </main>
 

@@ -42,14 +42,16 @@ nav a {
   background-image: url("BEAN.png");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: auto 120%;
   border: none;
   padding: 0 0.9rem;
   border-radius: 0;
   font-size: 0.8rem;
   font-weight: 700;
   white-space: nowrap;
-  text-shadow: 0 1px 0 rgba(45, 20, 16, 0.55);
+  -webkit-text-stroke: 0.8px #3f2a1d;
+  paint-order: stroke fill;
+  text-shadow: 0 1px 0 rgba(63, 42, 29, 0.45);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -67,6 +69,22 @@ nav a.active {
   color: #fff8c6;
   transform: translateY(-1px) scale(1.01);
   filter: brightness(1.06);
+}
+
+a:not(nav a) {
+  color: #5a3f2d;
+  text-decoration-color: #7a5a43;
+  text-underline-offset: 0.12em;
+}
+
+a:not(nav a):visited {
+  color: #6a4a33;
+}
+
+a:not(nav a):hover,
+a:not(nav a):focus-visible {
+  color: #3f2a1d;
+  text-decoration-color: #3f2a1d;
 }
 
 main {
@@ -147,11 +165,79 @@ h2 {
   background-color: #fff8c6;
 }
 
+.favorite-card-text {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.8rem;
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: #3f2a1d;
+}
+
+.favorite-front-emoji {
+  display: block;
+  font-size: 1.9rem;
+  line-height: 1;
+  margin-bottom: 0.35rem;
+}
+
+.favorite-front-label {
+  display: block;
+}
+
+.favorite-front-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .flip-card-back img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+.flip-card-back video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.find-me-grid {
+  margin-top: 0.8rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.find-me-item {
+  text-align: center;
+}
+
+.find-me-item img {
+  width: min(100%, 240px);
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 8px;
+}
+
+.find-me-item p {
+  margin: 0.55rem 0 0;
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .find-me-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 footer {
