@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jean's Beans!</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=20260616a" />
 </head>
 <body>
   <header>
@@ -452,7 +452,19 @@
       };
 
       const getCardCaption = function (card) {
-        return card.getAttribute("data-caption") || "";
+        const explicitCaption = card.getAttribute("data-caption");
+        if (explicitCaption && explicitCaption.trim()) return explicitCaption.trim();
+
+        const frontLabel = card.querySelector(".favorite-front-label");
+        if (frontLabel && frontLabel.textContent.trim()) return frontLabel.textContent.trim();
+
+        const backImage = card.querySelector(".flip-card-back img");
+        if (backImage) {
+          const alt = backImage.getAttribute("alt");
+          if (alt && alt.trim()) return alt.trim();
+        }
+
+        return "";
       };
 
       const setLightboxCaption = function (text) {
