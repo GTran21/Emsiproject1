@@ -3,13 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jean's Beans</title>
+  <title>Jean's Beans!</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
     <div class="header-inner">
-      <h1>Jean's Beans!</h1>
+      <h1>🫘 Jean's Beans! 🫘</h1>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark mode">
+        Dark Mode
+      </button>
       <nav>
         <a href="#about-me">About Me</a>
         <a href="#hobbies">Hobbies</a>
@@ -49,7 +52,7 @@
       <h2>Hobbies</h2>
       <p>My favorite hobbies are:</p>
       <div class="hobby-grid">
-        <div class="flip-card" tabindex="0" aria-label="Running hobby card">
+        <div class="flip-card" tabindex="0" aria-label="Running hobby card" data-caption="This is me running at a cross country meet last season.">
           <div class="flip-card-inner">
             <div class="flip-card-front">
               <div class="favorite-front-content">
@@ -63,7 +66,7 @@
           </div>
         </div>
 
-        <div class="flip-card" tabindex="0" aria-label="Guitar hobby card">
+        <div class="flip-card" tabindex="0" aria-label="Guitar hobby card" data-caption="I often play guitar at concerts for the Segundo Barrio Children's Chorus.">
           <div class="flip-card-inner">
             <div class="flip-card-front">
               <div class="favorite-front-content">
@@ -77,7 +80,7 @@
           </div>
         </div>
 
-        <div class="flip-card" tabindex="0" aria-label="Photography hobby card">
+        <div class="flip-card" tabindex="0" aria-label="Photography hobby card" data-caption="I took this photo at Olympic National Park in Washington last year.">
           <div class="flip-card-inner">
             <div class="flip-card-front">
               <div class="favorite-front-content">
@@ -91,7 +94,7 @@
           </div>
         </div>
 
-        <div class="flip-card" tabindex="0" aria-label="Video Games hobby card">
+        <div class="flip-card" tabindex="0" aria-label="Video Games hobby card" data-caption="This is the collection of games I have installed on my phone right now.">
           <div class="flip-card-inner">
             <div class="flip-card-front">
               <div class="favorite-front-content">
@@ -111,7 +114,7 @@
       <h2>Favorite Things</h2>
       <p>Flip the cards to see my favorites:</p>
       <div class="hobby-grid">
-        <div class="flip-card" tabindex="0" aria-label="Favorite food card">
+        <div class="flip-card" tabindex="0" aria-label="Favorite food card" data-caption="This is the bánh mì at Don's Cafe, my favorite bánh mì place in Houston.">
           <div class="flip-card-inner">
             <div class="flip-card-front">
               <div class="favorite-front-content">
@@ -125,7 +128,7 @@
           </div>
         </div>
 
-        <div class="flip-card" tabindex="0" aria-label="Favorite color card">
+        <div class="flip-card" tabindex="0" aria-label="Favorite color card" data-caption="If you can't tell based on how yellow my laptop setup is in this video, I really like the color yellow.">
           <div class="flip-card-inner">
             <div class="flip-card-front">
               <div class="favorite-front-content">
@@ -142,7 +145,7 @@
           </div>
         </div>
 
-        <div class="flip-card" tabindex="0" aria-label="Favorite song card">
+        <div class="flip-card" tabindex="0" aria-label="Favorite song card" data-caption="This is my favorite song, IDSMILE by Toa. It is featured in Hatsune Miku: Colorful Stage! (my favorite video game).">
           <div class="flip-card-inner">
             <div class="flip-card-front">
               <div class="favorite-front-content">
@@ -156,7 +159,7 @@
           </div>
         </div>
 
-        <div class="flip-card" tabindex="0" aria-label="Favorite video game card">
+        <div class="flip-card" tabindex="0" aria-label="Favorite video game card" data-caption="A rhythm game focused on Vocaloid (vocal synthesizer software that is often portrayed with anime personas). It's a lot of fun when I can really focus on it.">
           <div class="flip-card-inner">
             <div class="flip-card-front">
               <div class="favorite-front-content">
@@ -185,11 +188,11 @@
       <h2>Find Me</h2>
       <div class="find-me-grid">
         <div class="find-me-item">
-          <img src="EMSI Site Find Me 1.png" alt="Email contact" />
+          <img src="EMSI Site Find Me 1.png" alt="Email contact" data-light-src="EMSI Site Find Me 1.png" data-dark-src="EMSI Site Find Me 3.png" />
           <p><a href="mailto:trannguyetgiang712@gmail.com">trannguyetgiang712@gmail.com</a></p>
         </div>
         <div class="find-me-item">
-          <img src="EMSI Site Find Me.png" alt="Instagram contact" />
+          <img src="EMSI Site Find Me.png" alt="Instagram contact" data-light-src="EMSI Site Find Me.png" data-dark-src="EMSI Site Find Me 2.png" />
           <p><a href="https://www.instagram.com/jeanius_tobeknown/" target="_blank" rel="noopener noreferrer">@jeanius_tobeknown</a></p>
         </div>
       </div>
@@ -206,11 +209,58 @@
       <button class="lightbox-nav lightbox-nav-next" id="lightbox-next" type="button" aria-label="Show next flip card media">&#10095;</button>
       <button class="lightbox-close" id="lightbox-close" type="button" aria-label="Close expanded media">x</button>
       <div class="lightbox-media" id="lightbox-media"></div>
+      <div class="lightbox-caption" id="lightbox-caption"></div>
     </div>
   </div>
 
   <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
   <script>
+    (function () {
+      const themeToggleButton = document.getElementById("theme-toggle");
+      if (!themeToggleButton) return;
+
+      const themeStorageKey = "jeans-beans-theme";
+
+      const applyTheme = function (theme) {
+        const isDarkMode = theme === "dark";
+        document.body.classList.toggle("dark-mode", isDarkMode);
+        themeToggleButton.textContent = isDarkMode ? "Light Mode" : "Dark Mode";
+        themeToggleButton.setAttribute("aria-pressed", String(isDarkMode));
+        themeToggleButton.setAttribute("aria-label", isDarkMode ? "Switch to light mode" : "Switch to dark mode");
+        
+        // Swap Find Me section images based on theme
+        const findMeImages = document.querySelectorAll("#find-me img[data-light-src]");
+        findMeImages.forEach(function (img) {
+          const lightSrc = img.getAttribute("data-light-src");
+          const darkSrc = img.getAttribute("data-dark-src");
+          img.src = isDarkMode ? darkSrc : lightSrc;
+        });
+      };
+
+      let initialTheme = null;
+      try {
+        initialTheme = window.localStorage.getItem(themeStorageKey);
+      } catch (error) {
+        initialTheme = null;
+      }
+
+      if (initialTheme !== "light" && initialTheme !== "dark") {
+        initialTheme = "light";
+      }
+
+      applyTheme(initialTheme);
+
+      themeToggleButton.addEventListener("click", function () {
+        const nextTheme = document.body.classList.contains("dark-mode") ? "light" : "dark";
+        applyTheme(nextTheme);
+        try {
+          window.localStorage.setItem(themeStorageKey, nextTheme);
+        } catch (error) {
+          // Ignore storage errors in restrictive browser contexts.
+        }
+      });
+    })();
+
     (function () {
       const header = document.querySelector("header");
       if (!header) return;
@@ -391,6 +441,7 @@
 
       let currentSectionCards = [];
       let currentCardIndex = -1;
+      const lightboxCaption = document.getElementById("lightbox-caption");
 
       const updateNavButtons = function () {
         const hasMultiple = currentSectionCards.length > 1;
@@ -400,6 +451,14 @@
         nextButton.disabled = !hasMultiple;
       };
 
+      const getCardCaption = function (card) {
+        return card.getAttribute("data-caption") || "";
+      };
+
+      const setLightboxCaption = function (text) {
+        lightboxCaption.textContent = text || "";
+      };
+
       const closeLightbox = function () {
         const activeVideo = lightboxMedia.querySelector("video");
         if (activeVideo) {
@@ -407,6 +466,7 @@
           activeVideo.removeAttribute("src");
         }
         lightboxMedia.innerHTML = "";
+        setLightboxCaption("");
         lightbox.hidden = true;
         document.body.style.overflow = "";
         currentSectionCards = [];
@@ -423,6 +483,9 @@
         image.alt = altText || "Expanded flip card image";
         image.src = resolvedSrc;
         lightboxMedia.appendChild(image);
+        const currentCard = currentSectionCards[currentCardIndex];
+        const caption = currentCard ? getCardCaption(currentCard) : "";
+        setLightboxCaption(caption);
         lightbox.hidden = false;
         document.body.style.overflow = "hidden";
         updateNavButtons();
@@ -437,6 +500,9 @@
         video.playsInline = true;
         video.src = src;
         lightboxMedia.appendChild(video);
+        const currentCard = currentSectionCards[currentCardIndex];
+        const caption = currentCard ? getCardCaption(currentCard) : "";
+        setLightboxCaption(caption);
         lightbox.hidden = false;
         document.body.style.overflow = "hidden";
         const playPromise = video.play();
