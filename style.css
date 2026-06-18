@@ -424,8 +424,13 @@ h2 {
 }
 
 @media (max-width: 640px) {
+  .lightbox {
+    padding: 0.5rem;
+  }
+
   .lightbox-content {
-    padding: 3.25rem 0.5rem 0.5rem;
+    max-width: 100%;
+    padding: 3.25rem 0.25rem 0.5rem;
   }
 
   .lightbox-nav {
@@ -436,8 +441,14 @@ h2 {
 
   .lightbox-media img,
   .lightbox-media video {
-    max-width: 98vw;
+    max-width: 100%;
     max-height: calc(100vh - 8.25rem);
+  }
+
+  .lightbox-caption {
+    max-width: 100%;
+    padding: 0 0.25rem;
+    box-sizing: border-box;
   }
 }
 
@@ -479,14 +490,25 @@ h2 {
 }
 
 @media (max-width: 640px) {
+  .header-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   h1 {
     font-size: 1.72rem;
   }
 
   .theme-toggle {
-    top: 0.1rem;
+    position: static;
     font-size: 0.74rem;
     padding: 0.32rem 0.6rem;
+    margin-top: 0.45rem;
+  }
+
+  nav {
+    margin-top: 0.65rem;
   }
 
   .find-me-grid {
